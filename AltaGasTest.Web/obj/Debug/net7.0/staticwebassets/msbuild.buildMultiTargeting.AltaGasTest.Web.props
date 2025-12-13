@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\AltaGasTest.Web.props" />
+</Project>

@@ -1,0 +1,62 @@
+﻿@using AltaGasTest.Data.Entities
+
+@foreach (var trip in Trips)
+{
+    <tr>
+        @*<td><strong>@trip.Id</strong></td>*@
+        <td>@trip.EquipmentId</td>
+        <td>
+            <span title="City ID: @trip.OriginCityId">
+                @(trip.OriginCity?.CityName ?? trip.OriginCityId.ToString())
+            </span>
+        </td>
+        <td>
+            @if (trip.DestinationCityId.HasValue)
+            {
+                <span title="City ID: @trip.DestinationCityId">
+                    @(trip.DestinationCity?.CityName ?? trip.DestinationCityId.ToString())
+                </span>
+            }
+            else
+            {
+                <span class="text-muted">-</span>
+            }
+        </td>
+        <td>@trip.StartUtc.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")</td>
+        <td>
+            @if (trip.EndUtc != default)
+            {
+                @trip.EndUtc.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")
+            }
+            else
+            {
+                <span class="text-muted">-</span>
+            }
+        </td>
+        <td>
+            @if (trip.TotalTripHours > 0)
+            {
+                @trip.TotalTripHours.ToString("0.00")
+            }
+            else
+            {
+                <span class="text-muted">-</span>
+            }
+        </td>
+        <td>
+            <button class="btn btn-sm btn-outline-primary"
+                @onclick="() => OnTripSelected.InvokeAsync(trip)">
+                View Events
+            </button>
+        </td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public List<Trip>? Trips { get; set; }
+
+    [Parameter]
+    public EventCallback<Trip> OnTripSelected { get; set; }
+}
+

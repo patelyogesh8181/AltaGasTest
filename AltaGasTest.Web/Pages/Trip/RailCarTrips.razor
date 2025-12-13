@@ -1,0 +1,370 @@
+﻿@page "/"
+@using AltaGasTest.Data.Entities
+@using System.Net.Http
+@inject HttpClient Http
+@inject ILogger<RailCarTrips> Logger
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">
+                <span class="oi oi-train"></span> Railcar Trips
+            </h2>
+        </div>
+    </div>
+
+    <!-- File Upload Section -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Upload Equipment Events</h5>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="fileInput" class="form-label">Select CSV File</label>
+                <InputFile id="fileInput" OnChange="OnFileSelected" accept=".csv" class="form-control" />
+                <small class="form-text text-muted">
+                    Please select a CSV file containing equipment event data.
+                </small>
+            </div>
+
+            @if (!string.IsNullOrEmpty(StatusMessage))
+            {
+                <div class="mt-3">
+                    @if (IsErrorMessage)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error:</strong> @StatusMessage
+                            <button type="button" class="btn-close" @onclick="ClearStatusMessage"></button>
+                        </div>
+                    }
+                    else if (IsSuccess)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success:</strong> @StatusMessage
+                            <button type="button" class="btn-close" @onclick="ClearStatusMessage"></button>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (IsProcessing)
+            {
+                <div class="mt-3">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span class="ms-2">Processing file...</span>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Trips Display Section -->
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">
+                Equipment Trips
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (IsLoadingTrips)
+            {
+                <div class="text-center py-5">
+                    <div class="spinner-border text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Loading trips...</p>
+                </div>
+            }
+            else if (trips == null || trips.Count == 0)
+            {
+                <div class="alert alert-info" role="alert">
+                    <strong>No trips found.</strong> Upload a CSV file to create equipment trips.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-sm">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Equipment ID</th>
+                                <th>Origin</th>
+                                <th>Destination</th>
+                                <th>start date/time</th>
+                                <th>end date/time</th>
+                                <th>total trip hours</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <TripsTable Trips="@trips"
+                                    OnTripSelected="OnTripSelected" />
+
+                            @if (equipmentEvents != null)
+                            {
+                                <tr class="bg-light">
+                                    <td colspan="7">
+                                        @if (IsLoadingEquipmentEvents)
+                                        {
+                                            <div class="text-center py-5">
+                                                <div class="spinner-border text-secondary" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                                <p class="mt-3">Loading equipment Events...</p>
+                                            </div>
+                                        }
+                                        else if (equipmentEvents == null || equipmentEvents.Count == 0)
+                                        {
+                                            <div class="alert alert-info" role="alert">
+                                                <strong>No Equipment Events found.</strong>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <EquipmentEventsTable EquipmentEvents="@equipmentEvents" />
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Trip> trips;
+    private List<EquipmentEvent>? equipmentEvents;
+    private string? StatusMessage;
+    private bool IsErrorMessage;
+    private bool IsSuccess;
+    private bool IsProcessing;
+    private bool IsLoadingTrips, IsLoadingEquipmentEvents = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Logger.LogInformation("Initializing RailCarTrips component");
+            await LoadTripsAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error initializing RailCarTrips component");
+            SetErrorMessage("Failed to load trips. Please try again.");
+        }
+        finally
+        {
+            IsLoadingTrips = false;
+        }
+    }
+
+    /// <summary>
+    /// Loads all trips from the API.
+    /// </summary>
+    private async Task LoadTripsAsync()
+    {
+        try
+        {
+            trips = await Http.GetFromJsonAsync<List<Trip>>("api/trip/all");
+            Logger.LogInformation("Successfully loaded {TripCount} trips", trips?.Count ?? 0);
+        }
+        catch (HttpRequestException ex)
+        {
+            Logger.LogError(ex, "HTTP error loading trips from API");
+            trips = new List<Trip>();
+            SetErrorMessage("Failed to load trips from the server.");
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Unexpected error loading trips");
+            trips = new List<Trip>();
+            SetErrorMessage($"An unexpected error occurred: {ex.Message}");
+        }
+    }
+
+    public async Task GetEquipmentEventsAsync(string equipmentId)
+    {
+        try
+        {
+            IsLoadingEquipmentEvents = true;
+            equipmentEvents = null;
+            try
+            {
+                var response = await Http.GetAsync($"api/equipmentevent/{equipmentId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    equipmentEvents = await response.Content.ReadFromJsonAsync<List<EquipmentEvent>>();
+                }
+
+                Logger.LogInformation("Successfully loaded Equipment events", equipmentEvents == null ? true : false);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogWarning(ex, "Equipment events failed");
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            Logger.LogError(ex, "HTTP error loading Equipment event from API");
+            equipmentEvents = new List<EquipmentEvent>();
+            SetErrorMessage("Failed to load Equipment event from the server.");
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Unexpected error loading Equipment event");
+            equipmentEvents = new List<EquipmentEvent>();
+            SetErrorMessage($"An unexpected error occurred: {ex.Message}");
+        }
+        finally
+        {
+            IsLoadingEquipmentEvents = false;
+        }
+    }
+
+    /// <summary>
+    /// Handles file selection and upload.
+    /// </summary>
+    private async Task OnFileSelected(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            var file = e.File;
+            if (file == null)
+            {
+                SetErrorMessage("No file selected.");
+                return;
+            }
+
+            // Validate file
+            if (!ValidateFile(file, out var validationError))
+            {
+                SetErrorMessage(validationError);
+                return;
+            }
+
+            IsProcessing = true;
+            StateHasChanged();
+
+            Logger.LogInformation("Processing file: {FileName}", file.Name);
+
+            // Prepare multipart/form-data for API
+            using var content = new MultipartFormDataContent();
+            using var stream = file.OpenReadStream(long.MaxValue);
+            var fileContent = new StreamContent(stream);
+            fileContent.Headers.Add("Content-Type", "text/csv");
+            content.Add(fileContent, "file", file.Name);
+
+            SetInfoMessage("Uploading and processing events...");
+            StateHasChanged();
+
+            var response = await Http.PostAsync("api/trip/upload-events", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Logger.LogInformation("File processed successfully: {FileName}", file.Name);
+                SetSuccessMessage("Events processed and trips created successfully.");
+
+                // Reload trips after successful upload
+                await LoadTripsAsync();
+            }
+            else
+            {
+                var errorBody = await response.Content.ReadAsStringAsync();
+                Logger.LogWarning("File upload failed with status {StatusCode}: {Response}",
+                response.StatusCode, errorBody);
+                SetErrorMessage($"Upload failed: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error uploading file");
+            SetErrorMessage($"Error uploading file: {ex.Message}");
+        }
+        finally
+        {
+            IsProcessing = false;
+        }
+    }
+
+    private async Task OnTripSelected(Trip trip)
+    {
+        try
+        {
+            await GetEquipmentEventsAsync(trip.EquipmentId);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "HTTP error loading Equipment event from API");
+            equipmentEvents = new List<EquipmentEvent>();
+            SetErrorMessage("Failed to load Equipment event from the server.");
+        }
+    }
+
+    /// <summary>
+    /// Validates the selected file.
+    /// </summary>
+    private bool ValidateFile(IBrowserFile file, out string errorMessage)
+    {
+        const int MaxFileSizeBytes = 10485760; // 10 MB
+        const string CsvExtension = ".csv";
+
+        if (file.Size > MaxFileSizeBytes)
+        {
+            errorMessage = $"File size exceeds maximum allowed size of {MaxFileSizeBytes / 1024 / 1024} MB.";
+            return false;
+        }
+
+        if (!file.Name.EndsWith(CsvExtension, StringComparison.OrdinalIgnoreCase))
+        {
+            errorMessage = "Only .csv files are supported.";
+            return false;
+        }
+
+        errorMessage = string.Empty;
+        return true;
+    }
+
+    /// <summary>
+    /// Sets an error status message.
+    /// </summary>
+    private void SetErrorMessage(string message)
+    {
+        StatusMessage = message;
+        IsErrorMessage = true;
+        IsSuccess = false;
+    }
+
+    /// <summary>
+    /// Sets a success status message.
+    /// </summary>
+    private void SetSuccessMessage(string message)
+    {
+        StatusMessage = message;
+        IsSuccess = true;
+        IsErrorMessage = false;
+    }
+
+    /// <summary>
+    /// Sets an informational status message.
+    /// </summary>
+    private void SetInfoMessage(string message)
+    {
+        StatusMessage = message;
+        IsErrorMessage = false;
+        IsSuccess = false;
+    }
+
+    /// <summary>
+    /// Clears the status message.
+    /// </summary>
+    private void ClearStatusMessage()
+    {
+        StatusMessage = null;
+        IsErrorMessage = false;
+        IsSuccess = false;
+    }
+}

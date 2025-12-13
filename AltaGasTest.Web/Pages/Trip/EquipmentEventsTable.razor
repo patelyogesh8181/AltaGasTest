@@ -1,0 +1,35 @@
+﻿@using AltaGasTest.Data.Entities
+
+<table class="table table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Equipment ID</th>
+            <th>Event Code</th>
+            <th>City</th>
+            <th>Event Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < EquipmentEvents.Count; i++)
+        {
+            var equipmentEvent = EquipmentEvents[i];
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@equipmentEvent.EquipmentId</td>
+                <td>@equipmentEvent.EventCode</td>
+                <td>
+                    <span title="City ID: @equipmentEvent.CityId">
+                        @(equipmentEvent.City?.CityName ?? equipmentEvent.CityId.ToString())
+                    </span>
+                </td>
+                <td>@equipmentEvent.EventTime.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<EquipmentEvent>? EquipmentEvents { get; set; }
+}
