@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj": {}
+    "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj": {}
   },
   "projects": {
-    "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
+    "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
+        "projectUniqueName": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
         "projectName": "AltaGasTest.Data",
-        "projectPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
+        "projectPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
         "packagesPath": "C:\\Users\\patel\\.nuget\\packages\\",
-        "outputPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\obj\\",
+        "outputPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -38,7 +38,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net7.0": {
@@ -77,18 +83,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj": {
+    "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj",
+        "projectUniqueName": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj",
         "projectName": "AltaGasTest.Web",
-        "projectPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj",
+        "projectPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj",
         "packagesPath": "C:\\Users\\patel\\.nuget\\packages\\",
-        "outputPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Web\\obj\\",
+        "outputPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -109,8 +115,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
-                "projectPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj"
+              "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
+                "projectPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj"
               }
             }
           }
@@ -119,7 +125,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net7.0": {
@@ -137,6 +149,24 @@
             "Microsoft.Extensions.Http": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Microsoft.NET.ILLink.Analyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.100-1.23211.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.100-1.23211.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.11, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -153,7 +183,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[7.0.2, 7.0.2]"
+              "version": "[7.0.20, 7.0.20]"
             }
           ],
           "frameworkReferences": {
@@ -161,7 +191,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

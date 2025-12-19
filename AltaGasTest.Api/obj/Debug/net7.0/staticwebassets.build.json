@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "zjROVd/7W6Pu+1AFVILnI6imxMo7w9rQmmD4Y2vD0aQ=",
-  "Source": "AltaGasTest.Api",
-  "BasePath": "_content/AltaGasTest.Api",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"I0Op0mJ+NqDqmfNmvhXs9aoQOJBKdaiP/nqDq90pDJE=","Source":"AltaGasTest.Api","BasePath":"_content/AltaGasTest.Api","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

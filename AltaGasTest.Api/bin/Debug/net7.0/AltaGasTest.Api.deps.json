@@ -672,7 +672,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0"
         },
         "runtime": {
-          "AltaGasTest.Data.dll": {}
+          "AltaGasTest.Data.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AltaGasTest.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c32017d8a9b622d67ef0b9535ab62e4dbc625b7c")]
 [assembly: System.Reflection.AssemblyProductAttribute("AltaGasTest.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AltaGasTest.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

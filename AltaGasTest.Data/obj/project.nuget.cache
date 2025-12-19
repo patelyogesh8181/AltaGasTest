@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OLaPhrUzHdtoP/zrt/2bkcribA7nBtcyb8c2rEycR1ZDpVQYJTUu97KrWPmN67n380FJeVrsWCs4v78Y6eLjZg==",
+  "dgSpecHash": "NjWlJH9IJ+Y=",
   "success": true,
-  "projectFilePath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
+  "projectFilePath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\patel\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

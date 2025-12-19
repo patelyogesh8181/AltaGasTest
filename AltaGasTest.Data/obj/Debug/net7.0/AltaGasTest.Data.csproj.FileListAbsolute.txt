@@ -12,3 +12,4 @@ D:\JOBS applied\2025\Mindwire Systems Ltd\AltaGasTest\AltaGasTest.Data\obj\Debug
 D:\JOBS applied\2025\Mindwire Systems Ltd\AltaGasTest\AltaGasTest.Data\obj\Debug\net7.0\AltaGasTest.Data.pdb
 D:\JOBS applied\2025\Mindwire Systems Ltd\AltaGasTest\AltaGasTest.Data\obj\Debug\net7.0\AltaGasTest.Data.genruntimeconfig.cache
 D:\JOBS applied\2025\Mindwire Systems Ltd\AltaGasTest\AltaGasTest.Data\obj\Debug\net7.0\ref\AltaGasTest.Data.dll
+D:\JOBS applied\2025\Mindwire Systems Ltd\AltaGasTest\AltaGasTest.Data\obj\Debug\net7.0\AltaGasTest.Data.sourcelink.json

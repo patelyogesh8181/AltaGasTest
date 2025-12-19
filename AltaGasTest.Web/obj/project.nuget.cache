@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OPSeWF70IHr0y5k0ta3gxvcHYSwpcaHNGaS7ojM5UxzsfeJk/n3XmTnQ4bSIDxJKkhxDi7z1x5daEMANWEsO/g==",
+  "dgSpecHash": "gnh7ou1Ht70=",
   "success": true,
-  "projectFilePath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj",
+  "projectFilePath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Web\\AltaGasTest.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\patel\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
@@ -50,6 +50,9 @@
     "C:\\Users\\patel\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.21.0\\microsoft.identitymodel.tokens.6.21.0.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\microsoft.jsinterop\\7.0.2\\microsoft.jsinterop.7.0.2.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.2\\microsoft.jsinterop.webassembly.7.0.2.nupkg.sha512",
+    "C:\\Users\\patel\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\patel\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\patel\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\9.0.11\\microsoft.net.sdk.webassembly.pack.9.0.11.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
@@ -93,7 +96,7 @@
     "C:\\Users\\patel\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\patel\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\patel\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.2\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.2.nupkg.sha512"
+    "C:\\Users\\patel\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.20\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.20.nupkg.sha512"
   ],
   "logs": []
 }

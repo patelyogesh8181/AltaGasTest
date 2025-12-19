@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj": {}
+    "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj": {}
   },
   "projects": {
-    "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj": {
+    "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj",
+        "projectUniqueName": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj",
         "projectName": "AltaGasTest.Api",
-        "projectPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj",
+        "projectPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Api\\AltaGasTest.Api.csproj",
         "packagesPath": "C:\\Users\\patel\\.nuget\\packages\\",
-        "outputPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Api\\obj\\",
+        "outputPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
-                "projectPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj"
+              "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
+                "projectPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj"
               }
             }
           }
@@ -42,7 +42,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net7.0": {
@@ -82,18 +88,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
+    "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
+        "projectUniqueName": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
         "projectName": "AltaGasTest.Data",
-        "projectPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
+        "projectPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\AltaGasTest.Data.csproj",
         "packagesPath": "C:\\Users\\patel\\.nuget\\packages\\",
-        "outputPath": "D:\\JOBS applied\\2025\\Mindwire Systems Ltd\\AltaGasTest\\AltaGasTest.Data\\obj\\",
+        "outputPath": "D:\\WORKS\\PERSONAL\\AltaGasTest\\AltaGasTest.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -120,7 +126,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net7.0": {
@@ -159,7 +171,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308\\RuntimeIdentifierGraph.json"
         }
       }
     }
