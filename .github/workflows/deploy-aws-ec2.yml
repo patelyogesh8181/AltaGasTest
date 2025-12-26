@@ -15,7 +15,7 @@ jobs:
     env:
       DOTNET_VERSION: "8.0.x"
       WEB_PROJECT: "AltaGasTest.Web/AltaGasTest.Web.csproj"
-      API_PROJECT: "AltaGasTest.API/AltaGasTest.API.csproj"
+      API_PROJECT: "AltaGasTest.Api/AltaGasTest.Api.csproj"
 
       PUBLISH_WEB: "publish_web"
       PUBLISH_API: "publish_api"
