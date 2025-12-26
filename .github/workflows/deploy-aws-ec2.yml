@@ -1,42 +1,45 @@
-name: Deploy Railcar Trips UI to EC2
+name: Deploy AltaGasTest (Blazor WASM + API) to EC2
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 concurrency:
-  group: railcar-trips-ec2
+  group: altagastest-ec2
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     env:
-      NODE_VERSION: "20"
-      BUILD_DIR: "dist" # change to "build" for CRA
-      REMOTE_DIR: "/var/www/railcar-trips"
+      DOTNET_VERSION: "8.0.x"
+      WEB_PROJECT: "AltaGasTest.Web/AltaGasTest.Web.csproj"
+      API_PROJECT: "AltaGasTest.API/AltaGasTest.API.csproj"
+
+      PUBLISH_WEB: "publish_web"
+      PUBLISH_API: "publish_api"
+
+      REMOTE_WEB_DIR: "/var/www/altagastest-web"
+      REMOTE_API_DIR: "/opt/altagastest-api"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Restore
+        run: dotnet restore
 
-      - name: Build
-        run: npm run build
+      - name: Publish API (Release)
+        run: dotnet publish ${{ env.API_PROJECT }} -c Release -o ${{ env.PUBLISH_API }}
 
-      - name: Verify build output
-        run: |
-          ls -la
-          ls -la $BUILD_DIR
+      - name: Publish Blazor WASM (Release)
+        run: dotnet publish ${{ env.WEB_PROJECT }} -c Release -o ${{ env.PUBLISH_WEB }}
 
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.9.0
@@ -48,12 +51,22 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Deploy via rsync
+      - name: Deploy API to EC2
         run: |
           rsync -avz --delete \
-            "${{ env.BUILD_DIR }}/" \
-            "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ env.REMOTE_DIR }}/"
+            "${{ env.PUBLISH_API }}/" \
+            "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ env.REMOTE_API_DIR }}/"
 
-      - name: Reload nginx (optional)
+      - name: Deploy Blazor WASM wwwroot to EC2
         run: |
-          ssh "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" "sudo nginx -t && sudo systemctl reload nginx"
+          rsync -avz --delete \
+            "${{ env.PUBLISH_WEB }}/wwwroot/" \
+            "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ env.REMOTE_WEB_DIR }}/"
+
+      - name: Restart API and reload Nginx
+        run: |
+          ssh "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" "
+            sudo systemctl restart altagastest-api &&
+            sudo nginx -t &&
+            sudo systemctl reload nginx
+          "
