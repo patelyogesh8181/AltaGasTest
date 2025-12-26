@@ -50,6 +50,10 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+          
+      - name: Test SSH connectivity
+        run: |
+          ssh -o StrictHostKeyChecking=yes -v "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" "whoami && hostname && uname -a"
 
       - name: Deploy API to EC2
         run: |
